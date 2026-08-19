@@ -1,0 +1,96 @@
+/* —— Tela 3: Services —— */
+.services-section {
+  position: relative;
+  background: var(--bg);
+  padding: clamp(72px, 10vh, 140px) 0 clamp(80px, 12vh, 180px);
+  overflow: hidden;
+}
+
+.services-inner {
+  position: relative;
+  z-index: 1;
+  width: min(var(--content), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.services-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 4vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: clamp(48px, 8vh, 96px);
+  row-gap: clamp(56px, 9vh, 120px);
+}
+
+/* Editorial line: name on the left axis, micro description on the right axis */
+.service-item {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 340px);
+  column-gap: 48px;
+  align-items: baseline;
+}
+
+.service-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 2.6vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  transition: transform 0.35s var(--ease-editorial);
+}
+
+.service-desc {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(0.78rem, 0.85vw, 14px);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  opacity: 0.55;
+  transition: opacity 0.35s ease;
+}
+
+@media (hover: hover) {
+  .service-item:hover .service-name {
+    transform: translateX(8px);
+  }
+
+  .service-item:hover .service-desc {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-name,
+  .service-desc {
+    transition: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .services-section {
+    padding: clamp(72px, 10vh, 120px) 0 clamp(72px, 10vh, 140px);
+  }
+
+  .services-inner {
+    width: min(100% - 32px, 720px);
+  }
+
+  .services-list {
+    margin-top: clamp(56px, 9vh, 100px);
+    row-gap: clamp(44px, 7vh, 80px);
+  }
+
+  .service-item {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+}

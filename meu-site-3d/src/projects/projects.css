@@ -1,0 +1,291 @@
+/* —— Tela 4: Featured Projects (cinematic chapter) —— */
+.projects-section {
+  position: relative;
+  background: var(--bg);
+}
+
+.projects-head {
+  position: relative;
+  z-index: 1;
+  width: min(var(--content), calc(100% - 48px));
+  margin: 0 auto;
+  padding-bottom: clamp(12px, 2vh, 28px);
+}
+
+.projects-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 4vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.projects-scroll {
+  position: relative;
+  z-index: 1;
+  /* Height is set from JS: N × chapter vh */
+  min-height: 100svh;
+}
+
+.projects-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.projects-sticky .fluid-cursor {
+  z-index: 0;
+}
+
+.projects-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  will-change: transform;
+}
+
+.project-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.project-link {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-layout {
+  position: relative;
+  display: grid;
+  width: min(100%, calc(100svh * 1024 / 682));
+  aspect-ratio: 1024 / 682;
+  height: auto;
+  will-change: transform;
+}
+
+.projects-section.is-static .project-layout {
+  transform: none;
+}
+
+.project-device {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  filter: drop-shadow(0 22px 32px rgba(17, 17, 17, 0.16));
+}
+
+.project-laptop {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-screen {
+  --screen-top: 11.144%;
+  --screen-right: 20.313%;
+  --screen-bottom: 31.525%;
+  --screen-left: 19.922%;
+  position: absolute;
+  top: var(--screen-top);
+  right: var(--screen-right);
+  bottom: var(--screen-bottom);
+  left: var(--screen-left);
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 1.8% / 2.81%;
+  background: #000;
+  pointer-events: none;
+}
+
+.project-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: clip-path, transform;
+}
+
+.project-clip video,
+.project-cover,
+.project-detail img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--project-pos, center);
+  display: block;
+}
+
+.project-slide[data-fit='contain'] .project-clip video,
+.project-slide[data-fit='contain'] .project-cover {
+  object-fit: contain;
+}
+
+.project-slide[data-fit='cover'] .project-detail img {
+  object-position: center top;
+}
+
+.project-clip video {
+  z-index: 1;
+}
+
+.project-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.project-slide.is-playing .project-cover {
+  opacity: 0;
+}
+
+.project-slide.is-fallback .project-clip video {
+  opacity: 0;
+}
+
+.project-slide.is-fallback .project-cover {
+  opacity: 1;
+}
+
+.project-detail {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  will-change: clip-path, opacity, transform;
+}
+
+.projects-section.is-static .project-detail {
+  opacity: 1;
+}
+
+.projects-section.is-static .project-slide,
+.project-slide:first-of-type {
+  visibility: visible;
+}
+
+.project-info {
+  position: absolute;
+  left: 21%;
+  right: 21%;
+  top: 73.2%;
+  bottom: auto;
+  z-index: 4;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.project-name {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2.15vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #faf7f3;
+  white-space: nowrap;
+}
+
+.project-name .char {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.project-meta {
+  margin: 0;
+  display: flex;
+  gap: 18px;
+  font-weight: 500;
+  font-size: clamp(0.78rem, 0.85vw, 14px);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: #faf7f3;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.projects-progress {
+  position: absolute;
+  left: clamp(20px, 4vw, 64px);
+  bottom: clamp(20px, 4vh, 44px);
+  z-index: 2;
+  margin: 0;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+.projects-section.is-static .projects-scroll {
+  height: auto !important;
+}
+
+.projects-section.is-static .projects-sticky {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
+
+.projects-section.is-static .projects-stage {
+  position: static;
+}
+
+.projects-section.is-static .project-slide {
+  position: static;
+  padding: clamp(48px, 8vh, 120px) 0;
+}
+
+.projects-section.is-static .projects-progress {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .projects-head {
+    width: min(100% - 32px, 720px);
+  }
+}
+
+@media (max-width: 640px) {
+  .project-name {
+    font-size: clamp(0.72rem, 3.2vw, 1.05rem);
+  }
+
+  .project-info {
+    left: 16%;
+    right: 16%;
+    top: 73.2%;
+    gap: 8px;
+  }
+
+  .project-meta {
+    font-size: 10px;
+    gap: 8px;
+  }
+}

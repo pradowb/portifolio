@@ -1,0 +1,212 @@
+/* —— Tela 5: Let's Talk —— */
+.talk-section {
+  position: relative;
+  background: var(--bg);
+  padding: clamp(96px, 14vh, 160px) 0 clamp(80px, 12vh, 140px);
+}
+
+.talk-inner {
+  width: min(var(--content), calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 520px);
+  column-gap: clamp(48px, 8vw, 120px);
+  align-items: stretch;
+}
+
+.talk-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100%;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.talk-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(1.35rem, 10cqi, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.talk-title .char {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+}
+
+.talk-invite {
+  margin: clamp(20px, 2.6vh, 32px) 0 0;
+  max-width: 34ch;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.2vw, 18px);
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.talk-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: clamp(48px, 8vh, 96px);
+}
+
+.talk-social {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #ece8e3;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s var(--ease-editorial);
+}
+
+.talk-social svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.talk-social:hover,
+.talk-social:focus-visible {
+  opacity: 0.65;
+  transform: translateY(-2px);
+}
+
+.talk-social:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.talk-form {
+  width: 100%;
+  margin: 0;
+  padding: clamp(28px, 3vw, 40px);
+  display: grid;
+  gap: 22px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 22px;
+}
+
+.talk-field {
+  display: grid;
+  gap: 10px;
+}
+
+.talk-field span {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.talk-field input,
+.talk-field textarea {
+  width: 100%;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.talk-field input::placeholder,
+.talk-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.talk-field textarea {
+  min-height: 132px;
+}
+
+.talk-field input:focus,
+.talk-field textarea:focus {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.talk-submit {
+  width: 100%;
+  margin-top: 6px;
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s var(--ease-editorial);
+}
+
+.talk-submit:hover,
+.talk-submit:focus-visible {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.talk-submit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .talk-social,
+  .talk-field input,
+  .talk-field textarea,
+  .talk-submit {
+    transition: none;
+  }
+
+  .talk-title .char {
+    filter: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .talk-section {
+    padding: clamp(80px, 12vh, 140px) 0 clamp(72px, 10vh, 120px);
+  }
+
+  .talk-inner {
+    width: min(100% - 32px, 720px);
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  .talk-socials {
+    padding-top: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .talk-inner {
+    width: calc(100% - 32px);
+  }
+}

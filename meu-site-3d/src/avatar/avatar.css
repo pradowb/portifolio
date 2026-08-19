@@ -1,0 +1,97 @@
+/* Sticky avatar rail: spans hero + about so the photo travels between screens */
+.avatar-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%; /* refined at runtime: ends where the manifesto begins */
+  z-index: 6;
+  pointer-events: none;
+}
+
+.avatar-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+}
+
+.avatar-card {
+  position: relative;
+  width: min(var(--photo-w), 42vw);
+  aspect-ratio: 400 / 456;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Two faces of the flip card: b&w back view → red front view */
+.avatar-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.avatar-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+  display: block;
+  /* Zoom in on the face, cropping out most of the background */
+  transform: scale(1.3);
+  transform-origin: 50% 92%;
+}
+
+.avatar-face-back {
+  background: #141414;
+}
+
+.avatar-face-back img {
+  filter: grayscale(1) brightness(0.72) contrast(1.08);
+}
+
+.avatar-face-front {
+  background: #d21522;
+  transform: rotateY(180deg);
+}
+
+/* Red duotone via filters only — mix-blend-mode breaks inside
+   preserve-3d, so the tint is done with sepia + hue-rotate */
+.avatar-face-front img {
+  filter: grayscale(1) sepia(1) saturate(5) hue-rotate(-22deg)
+    brightness(0.92) contrast(1.08);
+}
+
+.avatar-face.is-placeholder {
+  background:
+    radial-gradient(ellipse 52% 70% at 50% 62%, #1a1214 0%, #1a1214 55%, transparent 56%),
+    #c41426;
+}
+
+.avatar-face-back.is-placeholder {
+  background:
+    radial-gradient(ellipse 52% 70% at 50% 62%, #000000 0%, #000000 55%, transparent 56%),
+    #2a2a2a;
+}
+
+.avatar-face.is-placeholder img {
+  opacity: 0;
+}
+
+@media (max-width: 1024px) {
+  .avatar-card {
+    width: min(240px, 52vw);
+  }
+}
+
+@media (max-width: 640px) {
+  .avatar-card {
+    width: min(196px, 58vw);
+  }
+}
